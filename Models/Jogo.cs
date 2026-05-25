@@ -8,7 +8,7 @@ namespace CopaApi.Models
     public class Jogo
     {
         public int Id { get; set; }
-        public DateTime DataHira { get; set; }
+        public DateTime DataHora { get; set; }
         public int EstadioId { get; set; } // FK
         public Estadio EstadioIdNavegacao { get; set; }
 

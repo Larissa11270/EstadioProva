@@ -16,11 +16,101 @@ namespace CopaHAS.Data
         {
 
         }
-        public DbSet<Jogador> TB_JOGADORES { get; set; }      
+        public DbSet<Jogador> TB_JOGADORES { get; set; }   
+        public DbSet<Estadio> TB_ESTADIOS { get; set; }
+        public DbSet<Selecao> TB_SELECOES { get; set; }
+        public DbSet<Tecnico> TB_TECNICOS { get; set; }
+        public DbSet<Jogo> TB_JOGOS { get; set; }
+        public DbSet<JogoSelecao> TB_JOGO_SELECOES { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Jogador>().ToTable("TB_JOGADORES");
+            modelBuilder.Entity<Estadio>().ToTable("TB_ESTADIOS");
+            modelBuilder.Entity<Selecao>().ToTable("TB_SELECOES");
+            modelBuilder.Entity<Tecnico>().ToTable("TB_TECNICOS");
+            modelBuilder.Entity<Jogo>().ToTable("TB_JOGOS");
+            modelBuilder.Entity<JogoSelecao>().ToTable("TB_JOGO_SELECOES");
+
+            //SELECAO
+            modelBuilder.Entity<Selecao>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Pais)
+                    .IsRequired()
+                    .HasMaxLength(100);
+            });
+
+            //JOGADOR (1:N com Selecao)
+            modelBuilder.Entity<Jogador>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Nome)
+                //.HasColumnName("Nome_diferente_da_classe_no_banco")
+                    .IsRequired()
+                    .HasMaxLength(100);
+                entity.Property(e => e.Posicao)
+                    .HasMaxLength(50);
+                //entity.Property(e=>e.NumeroCamisa)
+                    //.HasColumnName("Nome_outra_coluna_difrente_da_classe_no_banco");
+                entity.HasOne(d => d.SelecaoIdNavegacao)
+                    .WithMany(p => p.Jogadores)
+                    .HasForeignKey(d => d.SelecaoId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            //TECNICO(1:1 com Selecao)
+            modelBuilder.Entity<Tecnico>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property( e => e.Nome)
+                    .IsRequired()
+                    .HasMaxLength(100);
+                entity.HasOne( d => d.SelecaoIdNavegacao) 
+                    .WithOne(p => p.Tecnico)
+                    .HasForeignKey<Tecnico>(d => d.SelecaoId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            // ESTADIO            
+            modelBuilder.Entity<Estadio>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Nome)
+                      .IsRequired()
+                      .HasMaxLength(150);
+                entity.Property(e => e.Cidade)
+                      .HasMaxLength(100);
+            });
+            
+            // JOGO (1:N com Estadio)            
+            modelBuilder.Entity<Jogo>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.DataHora)                      
+                      .IsRequired();
+                //entity.Property(e => e.DataHora)
+                      //.HasColumnName("Nome_outra_coluna_diferente_da_classe_no_banco");
+                entity.HasOne(d => d.EstadioIdNavegacao)
+                      .WithMany(p => p.Jogos)
+                      .HasForeignKey(d => d.EstadioId)
+                      .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            //jogo-seleções
+            modelBuilder.Entity<JogoSelecao>(entity =>
+            {
+                entity.HasKey(e => new { e.JogoId, e.SelecaoId});
+                entity.HasOne(d => d.JogoIdNavegacao)
+                      .WithMany( p => p.JogoSelecoes)
+                      .HasForeignKey(d => d.JogoId);
+
+                entity.HasOne(d => d.SelecaoIdNavegacao)
+                      .WithMany(p => p.JogoSelecaos)//Olhar depois, strange.
+                      .HasForeignKey(d=> d.SelecaoId);
+
+
+            });
 
             modelBuilder.Entity<Jogador>().HasData
             (

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "eUk5t4flGL0=",
+  "dgSpecHash": "Pi13Ph4jxxA=",
   "success": true,
   "projectFilePath": "D:\\KaioLarissaAI\\CopaApi\\CopaHAS.csproj",
   "expectedPackageFiles": [
@@ -53,15 +53,5 @@
     "D:\\NUGET_PACKAGES\\system.security.cryptography.pkcs\\9.0.4\\system.security.cryptography.pkcs.9.0.4.nupkg.sha512",
     "D:\\NUGET_PACKAGES\\system.security.cryptography.protecteddata\\9.0.4\\system.security.cryptography.protecteddata.9.0.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "message": "Ocorreu um erro ao obter os dados de vulnerabilidade do pacote: Não é possível carregar o índice de serviço para a origem https://api.nuget.org/v3/index.json.",
-      "projectPath": "D:\\KaioLarissaAI\\CopaApi\\CopaHAS.csproj",
-      "warningLevel": 1,
-      "filePath": "D:\\KaioLarissaAI\\CopaApi\\CopaHAS.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

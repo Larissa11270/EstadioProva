@@ -348,3 +348,10 @@ D:\KaioLarissaAI\CopaApi\obj\Debug\net10.0\refint\CopaHAS.dll
 D:\KaioLarissaAI\CopaApi\obj\Debug\net10.0\CopaHAS.pdb
 D:\KaioLarissaAI\CopaApi\obj\Debug\net10.0\CopaHAS.genruntimeconfig.cache
 D:\KaioLarissaAI\CopaApi\obj\Debug\net10.0\ref\CopaHAS.dll
+D:\KaioLarissaAI\CopaApi\obj\Debug\net10.0\CopaHAS.sourcelink.json
+D:\KaioLarissaAI\CopaApi\bin\Debug\net10.0\publish\web.config
+D:\KaioLarissaAI\CopaApi\bin\Debug\net10.0\publish\appsettings.Development.json
+D:\KaioLarissaAI\CopaApi\bin\Debug\net10.0\publish\appsettings.json
+D:\KaioLarissaAI\CopaApi\bin\Debug\net10.0\publish\CopaHAS.deps.json
+D:\KaioLarissaAI\CopaApi\bin\Debug\net10.0\publish\CopaHAS.runtimeconfig.json
+D:\KaioLarissaAI\CopaApi\bin\Debug\net10.0\publish\CopaHAS.staticwebassets.endpoints.json
