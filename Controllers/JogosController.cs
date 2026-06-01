@@ -75,7 +75,8 @@ namespace CopaApi.Controllers
                         WHERE S1.Id < S2.Id
                         ORDER BY J.Id;";
 
-                var resultado = await _context.Database.SqlQueryRaw<JogoDTO>(sql).ToListAsync();
+                var resultado = await _context.Database.SqlQueryRaw<JogoDTO>(sql)
+                    .ToListAsync();
                 return Ok(resultado);
             }
             catch (System.Exception ex)
